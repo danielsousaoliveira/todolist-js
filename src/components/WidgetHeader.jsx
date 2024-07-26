@@ -19,7 +19,7 @@ const Task = ({ tasks }) => {
 };
 
 Task.propTypes = {
-  tasks: PropTypes.arrayOf(PropTypes.string).isRequired,
+  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default Task;

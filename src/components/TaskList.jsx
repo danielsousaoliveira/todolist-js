@@ -53,7 +53,7 @@ const TaskList = ({
 };
 
 TaskList.propTypes = {
-  tasks: PropTypes.arrayOf(PropTypes.string).isRequired,
+  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
   setTasks: PropTypes.func.isRequired,
   inputRef: PropTypes.any.isRequired,
   isInputMode: PropTypes.bool.isRequired,

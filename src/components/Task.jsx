@@ -8,18 +8,37 @@ const Task = ({ tasks, setTasks, isDeleteMode, index }) => {
     setTasks(updatedTasks);
   };
 
+  const handleCompleteTask = (index) => {
+    setTasks((previousTasks) => {
+      return previousTasks.map((task, i) => {
+        if (i == index) {
+          return { ...task, isDone: !task.isDone };
+        }
+        return task;
+      });
+    });
+  };
+
   return (
     <div key={index}>
       <li className="flex items-center justify-between">
-        <label className="relative flex items-center p-1 rounded-full cursor-pointer">
+        <label
+          onClick={() => handleCompleteTask(index)}
+          className="relative flex items-center p-1 rounded-full cursor-pointer"
+        >
           <input
             type="checkbox"
             className="form-checkbox min-h-6 min-w-6 h-6 w-6 cursor-pointer appearance-none rounded-full border border-gray-900/20 transition-all  checked:bg-blue-500 hover:scale-110"
             id="checkBox"
           />
         </label>
-        <span id={`text${index}`} className="ml-2 flex-grow">
-          {tasks[index]}
+        <span
+          id={`text${index}`}
+          className={`ml-2 flex-grow ${
+            tasks[index].isDone ? "line-through" : ""
+          }`}
+        >
+          {tasks[index].text}
         </span>
         {isDeleteMode == index ? (
           <button
@@ -38,7 +57,7 @@ const Task = ({ tasks, setTasks, isDeleteMode, index }) => {
 };
 
 Task.propTypes = {
-  tasks: PropTypes.arrayOf(PropTypes.string).isRequired,
+  tasks: PropTypes.arrayOf(PropTypes.object).isRequired,
   setTasks: PropTypes.func.isRequired,
   isDeleteMode: PropTypes.number.isRequired,
   index: PropTypes.number.isRequired,

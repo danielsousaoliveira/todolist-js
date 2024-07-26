@@ -4,9 +4,9 @@ import WidgetHeader from "./WidgetHeader";
 
 const WidgetBox = () => {
   const [tasks, setTasks] = useState([
-    "Mail packages",
-    "Return library books",
-    "Pick up beverages and snacks for birthday party",
+    { text: "Mail packages", isDone: false },
+    { text: "Return library books", isDone: false },
+    { text: "Pickup food for birthday party", isDone: false },
   ]);
 
   const [newTaskInput, setNewTaskInput] = useState("");
@@ -36,7 +36,7 @@ const WidgetBox = () => {
 
   const addTask = () => {
     if (newTaskInput.trim() !== "") {
-      setTasks([...tasks, newTaskInput]);
+      setTasks([...tasks, { text: newTaskInput, isDone: false }]);
       setNewTaskInput("");
       setIsInputMode(false);
     }
